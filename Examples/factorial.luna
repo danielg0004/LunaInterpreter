@@ -1,0 +1,11 @@
+function FACTORIAL n
+    if ( n == 1 )
+        return n
+    endif
+    before = n - 1
+    factorialbefore = FACTORIAL before
+    res = factorialbefore * n
+    return res
+endfunction
+
+print FACTORIAL 10
