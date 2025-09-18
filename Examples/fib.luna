@@ -1,0 +1,13 @@
+function FIB n
+    if n <= 1
+        return n
+    endif
+    before = n - 1
+    morebefore = n - 2
+    firstfib = FIB before
+    secondfib = FIB morebefore
+    res = firstfib + secondfib
+    return res
+endfunction
+
+print FIB 20
