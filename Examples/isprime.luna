@@ -1,0 +1,19 @@
+function ISPRIME n i
+    if ( n < 2 )
+        return 0
+    endif
+    if ( i * i > n )
+        return 1
+    endif
+    if ( n % i == 0 )
+        return 0
+    endif
+    k = i + 1
+    return ISPRIME n k
+endfunction
+
+maybeprime = 307
+
+res = ISPRIME maybeprime 2
+
+print res
