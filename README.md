@@ -1,9 +1,12 @@
-# Minimalistic language Interpreter
-An interpreter for a simple programming language with the following features:
-1. **Variables** (the identifiers must be lowercase strings) for any non-negative integers
-2. Implementation of shunting-yard algorithm for evaluation of complex expressions
-5. Control flow through conditionals
-6. **Function definition**, function calls, and **recursivity**
+# Luna: A Minimalistic Interpreter
+A from-scratch interpreter for a simple programming language implemented in Python.
+
+# Key Features & Implementation Details
+1. **Parsing:** Implemented a tokenizer and parser to handle statement types
+2. **Evaluation:** Uses the [Shunting-yard algorithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm) for handling the evaluation of complex arithmetic expressions
+3. **Control flow:** Supports conditional statements
+4. **Functions:** Allows user-defined functions, calls with limited scope, and **recursion**
+5. **Variables:** Includes a hash map for variable storage and lookup
 
 # How to use
 Requires Python 3.10+.
@@ -16,8 +19,6 @@ The code obtains tokens from the .luna file by looking at every line (separated 
 
 Then, it uses the starting tokens of each statement to determine what type of statement it is, and runs it afterwards. The function `returnToken` is used to return tokens to the stream that were peeked at but shouldn't be consumed.
 
-For if statements, it calculates the value of the condition:
-- If it's true, nothing changes, and the following lines are interpreted normally
-- If it's false, the instance variable `currently_interpreting` is set to false until the end of the if statement, which makes it so the program consumes every line without looking at it
+For if statements, it calculates the value of the condition and, if false, the instance variable `currently_interpreting` is set to false until the end of the if statement, which makes it so the program disregards every token until then.
 
 When interpreting function definitions, the instance variable `reading_function_definition` is set to the identifier of the function, and the code is simply copied to a dictionary that associates it with that name (along with the input variables). When doing function calls, a new instance of the interpreter class is created with this code and the input parameters are set as the values of the input variables, effectively producing the intended result and allowing for recursivity (as all function definitions are copied into the new instance, too).
